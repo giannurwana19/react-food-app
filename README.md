@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## About Project
+
+---
+
+- Project Name : my-app
+- Database Name : -
+- Project type : Frontend Web
+- Information : Project belajar ReactJS membuat aplikasi pemesanan makanan
+
+---
+
 ## Available Scripts
 
 In the project directory, you can run:
