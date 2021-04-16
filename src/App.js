@@ -1,13 +1,22 @@
-import { Container } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
+import {
+  ListCategoryComp,
+  ListProductComp,
+  NavbarComp,
+  ResultComp,
+} from './components';
 import './App.css';
-import NavbarComp from './components/NavbarComp';
 
 function App() {
   return (
     <>
       <NavbarComp />
-      <Container>
-        <h1>Halo ini navbar comp</h1>
+      <Container fluid>
+        <Row>
+          <ListCategoryComp />
+          <ListProductComp />
+          <ResultComp />
+        </Row>
       </Container>
     </>
   );
