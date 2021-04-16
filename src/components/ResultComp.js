@@ -4,8 +4,8 @@ import { Col } from 'react-bootstrap';
 class ResultComp extends Component {
   render() {
     return (
-      <Col md="3">
-        <h4>Hasil</h4>
+      <Col lg="3">
+        <h5>Hasil</h5>
         <hr />
       </Col>
     );

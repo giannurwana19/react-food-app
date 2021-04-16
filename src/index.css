@@ -14,3 +14,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar {
+  background-color: #22668a;
+}
+
+.card {
+  transition: 0.3s;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.App {
+  text-align: center;
+}
+
+.active-category {
+  background-color: #22668a;
+  color: #fff;
+}

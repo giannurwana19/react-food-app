@@ -9,15 +9,28 @@ import Product from './components/Product';
 class App extends React.Component {
   state = {
     products: [],
+    choosedCategory: 'Makanan',
   };
 
   componentDidMount() {
-    this.getProducts();
+    this.getProducts(`products?category.name=${this.state.choosedCategory}`);
   }
 
-  getProducts = async () => {
+  changeCategory = value => {
+    this.setState(
+      {
+        choosedCategory: value,
+        products: [],
+      },
+      () => {
+        this.getProducts(`products?category.name=${value}`);
+      }
+    );
+  };
+
+  getProducts = async (url = 'products') => {
     try {
-      const { data } = await axios(`${API_URL}/products`);
+      const { data } = await axios(`${API_URL}/${url}`);
 
       this.setState({
         products: data,
@@ -33,9 +46,12 @@ class App extends React.Component {
         <NavbarComp />
         <Container fluid>
           <Row>
-            <ListCategoryComp />
-            <Col>
-              <h4>Daftar Produk</h4>
+            <ListCategoryComp
+              changeCategory={this.changeCategory}
+              choosedCategory={this.state.choosedCategory}
+            />
+            <Col md>
+              <h5>Daftar Produk</h5>
               <hr />
               <Row>
                 {this.state.products.map(product => {

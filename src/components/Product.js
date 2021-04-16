@@ -6,7 +6,7 @@ const Product = props => {
   const { product } = props;
 
   return (
-    <Col md="4" xs="6" className="mb-4">
+    <Col lg="4" md="6" sm="6" xs="12" className="mb-4">
       <Card>
         <Card.Img
           variant="top"
@@ -17,7 +17,8 @@ const Product = props => {
         <Card.Body>
           <Card.Title>{product.name}</Card.Title>
           <Card.Text>
-            <p>Rp. {formatNumber(product.price)}</p>
+            Rp. {formatNumber(product.price)}
+            <br />
             <strong>{product.code}</strong>
           </Card.Text>
         </Card.Body>
