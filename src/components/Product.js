@@ -7,7 +7,7 @@ const Product = props => {
 
   return (
     <Col lg="4" md="6" sm="6" xs="12" className="mb-4">
-      <Card>
+      <Card onClick={() => props.storeCart(product)}>
         <Card.Img
           variant="top"
           src={`images/${product.category.name.toLowerCase()}/${
