@@ -24,7 +24,7 @@ class ResultComp extends Component {
                   <p>Rp. {formatNumber(cart.product.price)}</p>
                 </Col>
                 <Col>
-                  <strong class="float-right">Rp. {formatNumber(cart.totalPrice)}</strong>
+                  <strong className="float-right">Rp. {formatNumber(cart.totalPrice)}</strong>
                 </Col>
               </Row>
             </ListGroup.Item>
