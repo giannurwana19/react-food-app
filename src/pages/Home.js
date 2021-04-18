@@ -24,6 +24,12 @@ class Home extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.setState = () => {
+      return;
+    };
+  }
+
   changeCategory = value => {
     this.setState(
       {
@@ -130,7 +136,7 @@ class Home extends React.Component {
                 })}
               </Row>
             </Col>
-            <ResultComp carts={this.state.carts} />
+            <ResultComp carts={this.state.carts} {...this.props} />
           </Row>
         </Container>
       </>
