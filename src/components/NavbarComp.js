@@ -6,7 +6,7 @@ const NavbarComp = () => {
     <Navbar variant="dark" className="mb-2" expand="lg">
       <nav className="navbar-brand">
         <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
-          <strong>Food Cashier App</strong>
+          <strong>Food App</strong>
         </Link>
       </nav>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

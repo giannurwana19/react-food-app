@@ -57,7 +57,7 @@ class Home extends React.Component {
   getCarts = async () => {
     try {
       const { data } = await axios(`${API_URL}/carts`);
-      console.log('update');
+
       this.setState({
         carts: data,
       });
