@@ -4,6 +4,13 @@ import { formatNumber } from '../utils/utils';
 import Payment from './Payment';
 
 class ResultComp extends React.Component {
+  pushToCartDetail = cart => {
+    this.props.history.push({
+      pathname: `cart-detail/${cart.id}`,
+      state: { cart },
+    });
+  };
+
   render() {
     return (
       <Col lg="3">
@@ -11,7 +18,10 @@ class ResultComp extends React.Component {
         <hr />
         <ListGroup>
           {this.props.carts.map(cart => (
-            <ListGroup.Item key={cart.id}>
+            <ListGroup.Item
+              style={{ cursor: 'pointer' }}
+              key={cart.id}
+              onClick={() => this.pushToCartDetail(cart)}>
               <Row>
                 <Col xs="2">
                   <h5>

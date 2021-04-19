@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 const NavbarComp = () => {
   return (
     <Navbar variant="dark" className="mb-2" expand="lg">
-      <Navbar.Brand href="#home">
-        <strong>Food Cashier App</strong>
-      </Navbar.Brand>
+      <nav className="navbar-brand">
+        <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
+          <strong>Food Cashier App</strong>
+        </Link>
+      </nav>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
