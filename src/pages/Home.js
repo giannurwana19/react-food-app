@@ -18,11 +18,11 @@ class Home extends React.Component {
     this.getCarts();
   }
 
-  componentDidUpdate(prevState) {
-    if (this.state.carts !== prevState.carts) {
-      this.getCarts();
-    }
-  }
+  // componentDidUpdate(prevState) {
+  //   if (this.state.carts !== prevState.carts) {
+  //     this.getCarts();
+  //   }
+  // }
 
   componentWillUnmount() {
     this.setState = () => {
@@ -57,7 +57,7 @@ class Home extends React.Component {
   getCarts = async () => {
     try {
       const { data } = await axios(`${API_URL}/carts`);
-
+      console.log('update');
       this.setState({
         carts: data,
       });
@@ -78,6 +78,7 @@ class Home extends React.Component {
         axios
           .post(`${API_URL}/carts`, cartProduct)
           .then(() => {
+            this.getCarts();
             Swal.fire({
               icon: 'success',
               title: 'Success',
@@ -124,7 +125,7 @@ class Home extends React.Component {
             <Col md>
               <h5>Daftar Produk</h5>
               <hr />
-              <Row>
+              <Row className="overflow-auto menu">
                 {this.state.products.map(product => {
                   return (
                     <Product
@@ -145,3 +146,7 @@ class Home extends React.Component {
 }
 
 export default Home;
+
+// DOKUMENTASI
+// mengatsi infinite looping pada componentDidUpdate()
+// kita comment saja, dan kita akan panggil getCarts() setiap ada CRUD pada orders dan carts

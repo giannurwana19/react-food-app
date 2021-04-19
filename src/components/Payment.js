@@ -27,25 +27,48 @@ class Payment extends React.Component {
     }, 0);
 
     return (
-      <div className="fixed-bottom">
-        <Row>
-          <Col md={{ span: 3, offset: 9 }} className="bg-white">
-            <strong>
-              Total Harga:
-              <span className="float-right mr-3">
-                Rp. {formatNumber(totalPayment)}
-              </span>
-            </strong>
-            <Button
-              variant="primary"
-              block
-              className="my-3"
-              onClick={() => this.handleTotalPrice(totalPayment)}>
-              <FontAwesomeIcon icon={faShoppingCart} /> Bayar
-            </Button>
-          </Col>
-        </Row>
-      </div>
+      <>
+        <div className="fixed-bottom d-none d-md-block mr-2">
+          <Row>
+            <Col md={{ span: 3, offset: 9 }} className="bg-white rounded border">
+              <strong>
+                Total Harga:
+                <span className="float-right mr-3">
+                  Rp. {formatNumber(totalPayment)}
+                </span>
+              </strong>
+              <Button
+                variant="primary"
+                block
+                className="mb-3"
+                onClick={() => this.handleTotalPrice(totalPayment)}>
+                <FontAwesomeIcon icon={faShoppingCart} /> Bayar
+              </Button>
+            </Col>
+          </Row>
+        </div>
+
+        {/* mobile */}
+        <div className="mt-3 d-md-none d-sm-block">
+          <Row>
+            <Col md={{ span: 3, offset: 9 }} className="bg-white">
+              <strong>
+                Total Harga:
+                <span className="float-right mr-3">
+                  Rp. {formatNumber(totalPayment)}
+                </span>
+              </strong>
+              <Button
+                variant="primary"
+                block
+                className="my-3"
+                onClick={() => this.handleTotalPrice(totalPayment)}>
+                <FontAwesomeIcon icon={faShoppingCart} /> Bayar
+              </Button>
+            </Col>
+          </Row>
+        </div>
+      </>
     );
   }
 }
