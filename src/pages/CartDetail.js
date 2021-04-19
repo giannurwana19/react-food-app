@@ -1,5 +1,6 @@
 import { faPenAlt, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import React from 'react';
 import {
   Card,
@@ -10,6 +11,8 @@ import {
   Form,
   Image,
 } from 'react-bootstrap';
+import Swal from 'sweetalert2';
+import { API_URL } from '../utils/constants';
 import { formatNumber } from '../utils/utils';
 
 class CartDetail extends React.Component {
@@ -19,7 +22,7 @@ class CartDetail extends React.Component {
       cart: this.props.location.state.cart,
       total: this.props.location.state.cart.total,
       totalPrice: this.props.location.state.cart.totalPrice,
-      description: '',
+      description: this.props.location.state.cart.description || '',
     };
   }
 
@@ -47,8 +50,64 @@ class CartDetail extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const newCart = {
+      ...this.state.cart,
+      total: this.state.total,
+      totalPrice: this.state.totalPrice,
+    };
 
-    console.log(this.state);
+    if (this.state.description.length !== 0) {
+      newCart.description = this.state.description;
+    }
+
+    this.updateCart(newCart);
+  };
+
+  updateCart = cart => {
+    axios
+      .put(`${API_URL}/carts/${cart.id}`, cart)
+      .then(() => {
+        this.props.history.push('/');
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: `${cart.product.name} berhasil diupdate!`,
+          timer: 2500,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  deleteCart = cart => {
+    Swal.fire({
+      title: 'Hapus Pesanan?',
+      text: `${cart.product.name} bisa dipesan lagi di jika stok cukup!`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, Hapus',
+      cancelButtonText: 'Batal',
+    }).then(result => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`${API_URL}/carts/${cart.id}`)
+          .then(() => {
+            this.props.history.push('/');
+            Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: `${cart.product.name} berhasil dihapus!`,
+              timer: 2500,
+            });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    });
   };
 
   render() {
@@ -56,7 +115,7 @@ class CartDetail extends React.Component {
     return (
       <Container fluid>
         <Row>
-          <Col md="5">
+          <Col md="6">
             <Card>
               <Card.Header>Edit Pesanan</Card.Header>
               <Card.Body>
@@ -101,14 +160,17 @@ class CartDetail extends React.Component {
                   <Button variant="success" type="submit">
                     <FontAwesomeIcon icon={faPenAlt} /> Update
                   </Button>
-                  <Button variant="danger" className="ml-2">
+                  <Button
+                    variant="danger"
+                    className="ml-2"
+                    onClick={() => this.deleteCart(cart)}>
                     <FontAwesomeIcon icon={faTrash} /> Hapus Pesanan
                   </Button>
                 </Form>
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col md="6">
             <Image
               src={`http://localhost:3000/images/${cart.product.category.name.toLowerCase()}/${
                 cart.product.image
