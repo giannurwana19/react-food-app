@@ -9,7 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Project Name : my-app
 - Database Name : -
 - Project type : Frontend Web
-- Information : Project belajar ReactJS membuat aplikasi pemesanan makanan
+- Information : Project belajar ReactJS membuat aplikasi pemesanan makanan di kelas wahidev academy
 
 ---
 
